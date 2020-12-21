@@ -22,7 +22,7 @@ public class TaskOne {
             fileWriter.close();
 
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
 
     }

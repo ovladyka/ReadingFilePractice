@@ -1,24 +1,22 @@
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class TaskFive {
     public static void main(String[] args) throws IOException {
-        FileReader reader = new FileReader(args[0]);
-        StringBuilder sb = new StringBuilder();
+
+        BufferedReader br = new BufferedReader(new FileReader(args[0]));
+        String line;
         String[] arr;
 
-        while (reader.ready()) {
-            char symbol = (char) reader.read();
-
-            if (!String.valueOf(symbol).matches(".") || !reader.ready()) {
-                arr = sb.toString().split(" ");
+        try {
+            while ((line=br.readLine()) != null) {
+                arr = line.split(" ");
                 System.out.println(arr[0]);
-                sb.delete(0, sb.length());
-                arr = null;
-                symbol = 0;
             }
-            sb.append(symbol);
-
+            br.close();
+        }catch (IOException e){
+            e.printStackTrace();
         }
     }
 }

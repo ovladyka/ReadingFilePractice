@@ -9,21 +9,27 @@ public class TaskTwo {
             int count = 0;
             String check = "world";
             StringBuilder word = new StringBuilder();
+            char[] arr = {',', '.', '!', '?', ';', ':'};
 
             while (reader.ready()) {
-                word.append((char)reader.read());
+                char symbol = (char) reader.read();
+                for (char cr : arr) {
+                    if (symbol == cr) {
+                        if (word.toString().trim().toLowerCase().equals(check)) {
+                            count++;
+                        }
+                        word.delete(0, word.length());
+                        symbol = 0;
+                        break;
+                    }
+                }
+                word.append(symbol);
             }
 
-            String[] words = word.toString().split("[,.!?;:]");
-            for (String str: words) {
-                if (str.equals(check)){
-                    count++;
-                }
-            }
             System.out.println("the number of World words : " + count);
             reader.close();
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
     }
 }
